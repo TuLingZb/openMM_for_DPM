@@ -1,0 +1,52 @@
+<ForceField>
+  <!-- 定义原子类型 -->
+  <AtomTypes>
+    <Type name="U" class="U" element="U" mass="238.02891" />
+    <Type name="OU" class="OU" element="O" mass="16.00" />
+    <Type name="O_w" class="O_w" element="O" mass="16.00" />
+    <Type name="H_w" class="H_w" element="H" mass="1.008" />
+    <Type name="Cl" class="Cl" element="Cl" mass="35.45" />
+  </AtomTypes>
+ <Residues>
+  <!-- 定义配位水的时候总是模拟崩溃 -->
+  <Residue name="UO2">
+    <Atom charge="6.0" name="U" type="U"/>
+    <Atom charge="-2.0" name="OU1" type="OU"/>
+    <Atom charge="-2.0" name="OU2" type="OU"/>
+    <!-- <Atom charge="-0.8476" name="OW1" type="O_w"/>
+    <Atom charge="0.4238" name="HW11" type="H_w"/>
+    <Atom charge="0.4238" name="HW12" type="H_w"/>
+    <Atom charge="-0.8476" name="OW2" type="O_w"/>
+    <Atom charge="0.4238" name="HW21" type="H_w"/>
+    <Atom charge="0.4238" name="HW22" type="H_w"/> -->
+  </Residue>
+ </Residues>
+  <!-- Lennard-Jones 参数 -->
+  <NonbondedForce coulomb14scale="0.83333" lj14scale="0.5">
+    <Atom type="U" charge="6.0" sigma="0.352" epsilon="0.125" />
+    <Atom type="OU" charge="-2.0" sigma="0.43" epsilon="0.65" />
+    <Atom type="O_w" charge="-0.8476" sigma="0.316" epsilon="0.65" />
+    <Atom type="H_w" charge="0.4238" sigma="0.0" epsilon="0.0" />
+    <Atom type="Cl" charge="-1.0" sigma="0.438" epsilon="0.419" />
+  </NonbondedForce>
+
+  <!-- 键参数 -->
+  <HarmonicBondForce>
+    <!-- 铀酰键 -->
+    <Bond class1="U" class2="OU" length="0.177" k="1000.0" />
+    <!-- 铀-水 -->
+    <!-- <Bond class1="U" class2="O_w" length="0.242" k="500.0" /> -->
+    <!-- 水中的 O-H -->
+    <!-- <Bond class1="O_w" class2="H_w" length="0.1" k="450.0" /> -->
+  </HarmonicBondForce>
+
+  <!-- 角度参数 -->
+  <HarmonicAngleForce>
+    <!-- Oyl-U-Ow -->
+    <!-- <Angle class1="OU" class2="U" class3="O_w" angle="1.5708" k="100.0" /> -->
+    <!-- Oyl-U-Oyl -->
+    <Angle class1="OU" class2="U" class3="OU" angle="2.53073" k="100.0" />
+    <!-- H-Ow-H -->
+    <!-- <Angle class1="H_w" class2="O_w" class3="H_w" angle="1.824" k="55.0" /> -->
+  </HarmonicAngleForce>
+</ForceField>
